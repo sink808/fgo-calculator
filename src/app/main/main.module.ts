@@ -5,9 +5,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { TakaraguComponent } from './takaragu/takaragu.component';
 import { AttackComponent } from './attack/attack.component';
 import { NpComponent } from './np/np.component';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatModule } from '../shareModule/mat.module';
+
 const routes: Routes = [
-  { path: '', component: MainComponent, children: [] }
+  {
+    path: '', component: MainComponent, children: [
+      { path: '', redirectTo: 'takaragu' },
+      { path: 'takaragu', component: TakaraguComponent, data: { label: '寶具傷害計算' } },
+      { path: 'attack', component: AttackComponent, data: { label: '指令卡傷害計算' } },
+      { path: 'np', component: NpComponent, data: { label: 'np值計算' } }
+    ]
+  }
 ];
 @NgModule({
   declarations: [
@@ -18,7 +26,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    MatTabsModule,
+    MatModule,
     RouterModule.forChild(routes)
   ]
 })
