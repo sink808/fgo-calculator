@@ -5,14 +5,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { TakaraguComponent } from './takaragu/takaragu.component';
 import { AttackComponent } from './attack/attack.component';
 import { NpComponent } from './np/np.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 const routes: Routes = [
   { path: '', component: MainComponent, children: [] }
 ];
 @NgModule({
-  declarations: [MainComponent, TakaraguComponent, AttackComponent, NpComponent],
+  declarations: [
+    MainComponent,
+    TakaraguComponent,
+    AttackComponent,
+    NpComponent
+  ],
   imports: [
     CommonModule,
+    MatTabsModule,
     RouterModule.forChild(routes)
   ]
 })
