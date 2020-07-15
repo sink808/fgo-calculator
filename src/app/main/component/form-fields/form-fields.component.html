@@ -1,0 +1,43 @@
+<div class="container mt-4">
+    <!-- 必填欄位 -->
+    <mat-card>
+        <div class="mb-4">主要數值</div>
+        <mat-card-content class="mx-2">
+            <div *ngTemplateOutlet="formItems; context: {$implicit: mainFormItems, isInputRequired: true}"></div>
+        </mat-card-content>
+    </mat-card>
+    <!-- 非必填欄位 -->
+    <mat-expansion-panel class="mt-4">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                其他數值
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngTemplateOutlet="formItems; context: {$implicit: subFormItems, isInputRequired: false}"></div>
+    </mat-expansion-panel>
+    <!-- 按鈕欄 -->
+    <div class="my-4 float-right">
+        <button mat-raised-button class="mr-2" (click)="reset()">重置</button>
+        <button mat-raised-button color="primary" (click)="calculate()">計算</button>
+    </div>
+</div>
+
+<ng-template #formItems let-formItems let-isInputRequired="isInputRequired">
+    <form [formGroup]="form">
+        <ng-container *ngFor="let formItem of formItems">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ formItem.title }}</mat-label>
+                <input *ngIf="formItem.type === 'input'" matInput type="number" [required]="isInputRequired"
+                    [formControlName]="formItem.modelName">
+                <select *ngIf="formItem.type === 'select'" matNativeControl [required]="isInputRequired"
+                    [formControlName]="formItem.modelName">
+                    <ng-container *ngFor="let selectOption of formItem.selectOptions">
+                        <option [value]="selectOption.value">{{ selectOption.title }}</option>
+                    </ng-container>
+                </select>
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+        </ng-container>
+    </form>
+</ng-template>
+  
