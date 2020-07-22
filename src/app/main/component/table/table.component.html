@@ -1,0 +1,30 @@
+<div class="container mb-4" style="margin-top: 100px" *ngIf="data.length > 0">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+
+        <ng-container *ngFor="let col of displayedColumns">
+            <ng-container [matColumnDef]="col">
+                <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element[col] | number }} </mat-cell>
+            </ng-container>
+        </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <mat-cell *matCellDef="let element">
+                <div class="element-detail" [@detailExpand]="(element === expandedElement) ? 'expanded' : 'collapsed'">
+                    <mat-grid-list cols="3" rowHeight="3:1">
+                        <ng-container *ngFor="let col of expandColumns">
+                            <mat-grid-tile>
+                                <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
+                                <span>{{ element[col] }}</span>
+                            </mat-grid-tile>
+                        </ng-container>
+                    </mat-grid-list>
+                </div>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="main-row"
+        (click)="expandedElement = (expandedElement === row) ? null : row"></mat-row>
+        <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></mat-row>
+    </mat-table>
+</div>

@@ -1,0 +1,36 @@
+.element-detail {
+    overflow: hidden;
+    width: 100%;
+    // display: flex;
+}
+
+.main-row {
+    cursor: pointer;
+    &:hover {
+        background: whitesmoke;
+    } 
+}
+
+.detail-row {
+    min-height: 0;
+    // height: 0;
+    border-bottom-width: 0;
+}
+
+.tile-title {
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+:host ::ng-deep .mat-grid-tile .mat-figure {
+    justify-content: start;
+}
+
+
+
+
+
+
+
+

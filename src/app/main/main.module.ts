@@ -8,7 +8,9 @@ import { AttackComponent } from './attack/attack.component';
 import { NpComponent } from './np/np.component';
 import { MatModule } from '../shareModule/mat.module';
 import { FormFieldsComponent } from './component/form-fields/form-fields.component';
-
+import { TableComponent } from './component/table/table.component';
+import { GetColTitlePipe } from './component/get-col-title/get-col-title.pipe';
+import { MainService } from './main.service';
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [
@@ -31,7 +33,10 @@ const routes: Routes = [
     TakaraguComponent,
     AttackComponent,
     NpComponent,
-    FormFieldsComponent
-  ]
+    FormFieldsComponent,
+    TableComponent,
+    GetColTitlePipe
+  ],
+  providers: [MainService]
 })
 export class MainModule { }
