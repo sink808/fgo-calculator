@@ -4,7 +4,7 @@
         <ng-container *ngFor="let col of displayedColumns">
             <ng-container [matColumnDef]="col">
                 <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ element[col] | number }} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
             </ng-container>
         </ng-container>
         <ng-container matColumnDef="expandedDetail">
