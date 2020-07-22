@@ -32,12 +32,28 @@ export interface TakaraguModels {
   [SPECIAL_BUFF]: number;
   [SPECIAL_NP_BUFF]: number;
   [FIXED_BUFF]: number;
-  [MAX_DAMAGE]?: number;
-  [MIN_DAMAGE]?: number;
-  [AVG_DAMAGE]?: number;
 }
 
-const classSelectOptions: SelectOption[] = [
+export interface TakaraguColModels {
+  [ATK]: number;
+  [CLASS]: string;
+  [CLASS_INHIBITION]: string;
+  [GROUP_INHIBITION]: string;
+  [NP_CARD]: string;
+  [NP_POWER]: number;
+  [EQUIPMENT_ATK]: number;
+  [ATK_BUFF]: number;
+  [CARD_BUFF]: number;
+  [NP_BUFF]: number;
+  [SPECIAL_BUFF]: number;
+  [SPECIAL_NP_BUFF]: number;
+  [FIXED_BUFF]: number;
+  [MAX_DAMAGE]: number;
+  [MIN_DAMAGE]: number;
+  [AVG_DAMAGE]: number;
+}
+
+export const classSelectOptions: SelectOption[] = [
   {title: 'Saber', value: 1},
   {title: 'Archer', value: 0.95},
   {title: 'Lancer', value: 1.05},
@@ -54,7 +70,7 @@ const classSelectOptions: SelectOption[] = [
   {title: 'Beast', value: 1}
 ];
 
-const classInhibitionSelectOptions: SelectOption[] = [
+export const classInhibitionSelectOptions: SelectOption[] = [
   {title: '非克制', value: 1},
   {title: '普通克制', value: 2},
   {title: '狂階克制 or AlterEgo克制下三騎', value: 1.5},
@@ -62,13 +78,13 @@ const classInhibitionSelectOptions: SelectOption[] = [
   {title: '克制Beast III', value: 1.2},
 ];
 
-const groupInhibitionSelectOptions: SelectOption[] = [
+export const groupInhibitionSelectOptions: SelectOption[] = [
   {title: '克制', value: 1.1},
   {title: '無克制', value: 1},
   {title: '被克制', value: 0.9}
 ];
 
-const cardSelectOptions: SelectOption[] = [
+export const cardSelectOptions: SelectOption[] = [
   {title: 'Buster(紅)', value: 1.5},
   {title: 'Arts(藍)', value: 1},
   {title: 'Quick(綠)', value: 0.8}
@@ -93,3 +109,4 @@ export const subFormItems: FormFieldItem[] = [
   {title: '固定傷害 Buff', type: 'input', modelName: FIXED_BUFF, initialValue: 0}
 ];
 
+export const displayedColumns: string[] = [MAX_DAMAGE, MIN_DAMAGE, AVG_DAMAGE];

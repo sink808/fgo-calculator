@@ -3,3 +3,6 @@
   [subFormItems]="subFormItems"
   (calValue)="calculate($event)">
 </app-form-fields>
+
+<app-table [data]="damageList" [colModels]="colModels"
+[displayedColumns]="displayedColumns"></app-table>
