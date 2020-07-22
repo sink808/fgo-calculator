@@ -25,6 +25,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="main-row"
         (click)="expandedElement = (expandedElement === row) ? null : row"></mat-row>
-        <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></mat-row>
+        <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"
+        [ngClass]="{'expand-row' : (expandedElement === row)}"></mat-row>
     </mat-table>
 </div>
