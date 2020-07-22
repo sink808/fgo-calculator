@@ -8,14 +8,14 @@ import { TakaraguModels } from '../../takaragu/takaragu.const';
   styleUrls: ['./form-fields.component.scss']
 })
 export class FormFieldsComponent implements OnChanges {
-  @Input() mainFormItems: FormFieldItem[];
-  @Input() subFormItems: FormFieldItem[];
-  @Output() calValue: EventEmitter<TakaraguModels> = new EventEmitter<TakaraguModels>();
-  form: FormGroup = this.fb.group({});
+  @Input() public mainFormItems: FormFieldItem[] = [];
+  @Input() public subFormItems: FormFieldItem[] = [];
+  @Output() private calValue: EventEmitter<TakaraguModels> = new EventEmitter<TakaraguModels>();
+  public form: FormGroup = this.fb.group({});
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     this.setForm();
   }
 
@@ -27,7 +27,10 @@ export class FormFieldsComponent implements OnChanges {
   }
 
   public calculate(): void {
-    this.calValue.emit(this.form.value);
+    const resultValue: TakaraguModels = {...this.form.value};
+    const keys: string[] = Object.keys(resultValue);
+    keys.forEach((key) => resultValue[key] = Number(resultValue[key])); // select value will be string
+    this.calValue.emit(resultValue);
   }
 
   public reset(): void {

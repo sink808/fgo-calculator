@@ -7,7 +7,7 @@
         </mat-card-content>
     </mat-card>
     <!-- 非必填欄位 -->
-    <mat-expansion-panel class="mt-4">
+    <mat-expansion-panel class="mt-4" *ngIf="subFormItems.length > 0">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 其他數值
