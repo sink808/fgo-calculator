@@ -13,8 +13,10 @@
                     <mat-grid-list cols="2" rowHeight="65px">
                         <ng-container *ngFor="let col of expandColumns">
                             <mat-grid-tile>
-                                <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
-                                <span>{{ element[col] }}</span>
+                                <div>
+                                    <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
+                                    <span>{{ element[col] }}</span>
+                                </div>
                             </mat-grid-tile>
                         </ng-container>
                     </mat-grid-list>
