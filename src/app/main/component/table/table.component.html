@@ -10,7 +10,7 @@
         <ng-container matColumnDef="expandedDetail">
             <mat-cell *matCellDef="let element">
                 <div class="element-detail" [@detailExpand]="(element === expandedElement) ? 'expanded' : 'collapsed'">
-                    <mat-grid-list cols="3" rowHeight="3:1">
+                    <mat-grid-list cols="2" rowHeight="65px">
                         <ng-container *ngFor="let col of expandColumns">
                             <mat-grid-tile>
                                 <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
