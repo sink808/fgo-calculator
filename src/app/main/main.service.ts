@@ -12,12 +12,4 @@ export class MainService {
     return (result) ? result.title : '';
   }
 
-  // public scrollToBottom(): void {
-  //   setTimeout(() => {
-  //     window.scroll({
-  //       top: document.body.scrollHeight,
-  //       behavior: 'smooth'
-  //     });
-  //   }, 5); // 等畫面render
-  // }
 }

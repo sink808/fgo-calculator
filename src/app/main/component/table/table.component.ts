@@ -28,13 +28,29 @@ export class TableComponent implements OnInit, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.data) {
-      this.dataSource.data = this.data;
+      this.pushDataToTable();
     }
     if (changes.colModels && changes.displayedColumns) {
       this.expandColumns = this.colModels
         .map((col) => col.key)
         .filter((col) => this.displayedColumns.indexOf(col) === -1); // except displayedColumns
-      }
+    }
+  }
+
+  private pushDataToTable(): void {
+    this.dataSource.data = this.data;
+    if (this.data.length === 1) {
+      this.scrollToBottom(); // cause newest data always in the top of table, the first scroll to bottom
+    }
+  }
+
+  private scrollToBottom(): void {
+    setTimeout(() => {
+      window.scroll({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 5); // 等畫面render
   }
 
 }

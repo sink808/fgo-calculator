@@ -70,7 +70,6 @@ export class TakaraguComponent implements OnInit {
     const col: TakaraguColModels = modelsToColModels.call(this);
 
     this.damageList  = [col, ...this.damageList]; // for @Input change
-    // this.mainService.scrollToBottom();
 
     function modelsToColModels(): TakaraguColModels {
       return {
