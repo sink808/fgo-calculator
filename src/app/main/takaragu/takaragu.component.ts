@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormFieldItem } from '../component/form-fields/form-fields.const';
 import * as t from './takaragu.const';
+import * as m from '../main.const';
 import { TakaraguModels, TakaraguColModels } from './takaragu.const';
 import { ColModel } from '../component/table/table.const';
 import { MainService } from '../main.service';
@@ -74,10 +75,10 @@ export class TakaraguComponent implements OnInit {
     function modelsToColModels(): TakaraguColModels {
       return {
         [t.ATK]: value[t.ATK],
-        [t.CLASS]: this.mainService.getOptionTitle(value[t.CLASS], t.classSelectOptions),
-        [t.CLASS_INHIBITION]: this.mainService.getOptionTitle(value[t.CLASS_INHIBITION], t.classInhibitionSelectOptions),
-        [t.GROUP_INHIBITION]: this.mainService.getOptionTitle(value[t.GROUP_INHIBITION], t.groupInhibitionSelectOptions),
-        [t.NP_CARD]: this.mainService.getOptionTitle(value[t.NP_CARD], t.cardSelectOptions),
+        [t.CLASS]: this.mainService.getOptionTitle(value[t.CLASS], m.classSelectOptions),
+        [t.CLASS_INHIBITION]: this.mainService.getOptionTitle(value[t.CLASS_INHIBITION], m.classInhibitionSelectOptions),
+        [t.GROUP_INHIBITION]: this.mainService.getOptionTitle(value[t.GROUP_INHIBITION], m.groupInhibitionSelectOptions),
+        [t.NP_CARD]: this.mainService.getOptionTitle(value[t.NP_CARD], m.cardSelectOptions),
         [t.NP_POWER]: value[t.NP_POWER],
         [t.EQUIPMENT_ATK]: value[t.EQUIPMENT_ATK],
         [t.ATK_BUFF]: value[t.ATK_BUFF],
