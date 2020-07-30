@@ -31,9 +31,11 @@ export class TakaraguComponent implements OnInit {
     const model = [];
     this.mainFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
     this.subFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
-    model.push({title: '最大傷害', key: t.MAX_DAMAGE});
-    model.push({title: '最小傷害', key: t.MIN_DAMAGE});
-    model.push({title: '平均傷害', key: t.AVG_DAMAGE});
+    model.push(
+      { title: '最大傷害', key: t.MAX_DAMAGE },
+      { title: '最小傷害', key: t.MIN_DAMAGE },
+      { title: '平均傷害', key: t.AVG_DAMAGE }
+    );
     return model;
   }
 
