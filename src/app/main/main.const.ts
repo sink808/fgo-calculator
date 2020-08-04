@@ -1,5 +1,18 @@
 import { SelectOption } from './component/form-fields/form-fields.const';
 
+export const ATK = 'atk';
+export const CLASS = 'class';
+export const CLASS_INHIBITION = 'classInhibition';
+export const GROUP_INHIBITION = 'groupInhibition';
+export const EQUIPMENT_ATK = 'equipmentAtk';
+export const ATK_BUFF = 'atkBuff';
+export const CARD_BUFF = 'cardBuff';
+export const SPECIAL_BUFF = 'specialBuff';
+export const FIXED_BUFF = 'fixedBuff';
+export const MAX_DAMAGE = 'maxDamage';
+export const MIN_DAMAGE = 'minDamage';
+export const AVG_DAMAGE = 'avgDamage';
+
 export const classSelectOptions: SelectOption[] = [
   {title: 'Saber', value: 1},
   {title: 'Archer', value: 0.95},

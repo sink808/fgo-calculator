@@ -1,28 +1,27 @@
 import { FormFieldItem } from '../component/form-fields/form-fields.const';
 import {
+  ATK,
+  CLASS,
+  CLASS_INHIBITION,
+  GROUP_INHIBITION,
+  EQUIPMENT_ATK,
+  ATK_BUFF,
+  CARD_BUFF,
+  SPECIAL_BUFF,
+  FIXED_BUFF,
+  MAX_DAMAGE,
+  MIN_DAMAGE,
+  AVG_DAMAGE,
   classSelectOptions,
   classInhibitionSelectOptions,
   groupInhibitionSelectOptions,
   cardSelectOptions
 } from '../main.const';
 
-export const ATK = 'atk';
-export const CLASS = 'class';
-export const CLASS_INHIBITION = 'classInhibition';
-export const GROUP_INHIBITION = 'groupInhibition';
 export const NP_CARD = 'npCard';
 export const NP_POWER = 'npPower';
-export const EQUIPMENT_ATK = 'equipmentAtk';
-export const ATK_BUFF = 'atkBuff';
-export const CARD_BUFF = 'cardBuff';
 export const NP_BUFF = 'npBuff';
-export const SPECIAL_BUFF = 'specialBuff';
 export const SPECIAL_NP_BUFF = 'specialNpBuff';
-export const FIXED_BUFF = 'fixedBuff';
-
-export const MAX_DAMAGE = 'maxDamage';
-export const MIN_DAMAGE = 'minDamage';
-export const AVG_DAMAGE = 'avgDamage';
 
 export interface TakaraguModels {
   [ATK]: number;
