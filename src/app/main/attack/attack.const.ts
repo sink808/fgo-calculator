@@ -14,8 +14,7 @@ import {
   AVG_DAMAGE,
   classSelectOptions,
   classInhibitionSelectOptions,
-  groupInhibitionSelectOptions,
-  cardSelectOptions
+  groupInhibitionSelectOptions
 } from '../main.const';
 
 export const CARD = 'card';
@@ -76,7 +75,7 @@ export const cardOrderSelectOptions: SelectOption[] = [
   {title: '第1張', value: 1},
   {title: '第2張', value: 1.2},
   {title: '第3張', value: 1.4},
-  {title: '第4張(Extra Attack)', value: 1},
+  {title: '第4張(Extra Attack)', value: 0}, // set 0 to distinguish from 1st card
 ];
 
 export const firstCardSelectOptions: SelectOption[] = [
@@ -99,7 +98,14 @@ export const mainFormItems: FormFieldItem[] = [
   {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 1},
   {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 2},
   {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 1},
-  {title: '卡片顏色', type: 'select', modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 1.5},
+  {title: '卡片顏色', type: 'select', modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 1.5,
+    autoSetting: {
+      linkName: CARD_ORDER,
+      value: (val: string) => {
+        return (val === '2' || val === '3.5') ? 0 : 1;
+      }
+    }
+  },
   {title: '卡片位置', type: 'select', modelName: CARD_ORDER, selectOptions: cardOrderSelectOptions, initialValue: 1},
   {title: '首卡顏色', type: 'select', modelName: FIRST_CARD, selectOptions: firstCardSelectOptions, initialValue: 0.5},
   {title: 'Buster Chain加成', type: 'select', modelName: BUSTER_CHAIN, selectOptions: busterChainSelectOptions, initialValue: 0}

@@ -1,3 +1,8 @@
+interface AutoSetting {
+  linkName: string;
+  value: (val: string) => number;
+}
+
 export interface SelectOption {
   title: string;
   value: number;
@@ -10,4 +15,7 @@ export interface FormFieldItem {
   initialValue: number;
   tooltip?: string;
   selectOptions?: SelectOption[];
+  autoSetting?: AutoSetting;
 }
+
+

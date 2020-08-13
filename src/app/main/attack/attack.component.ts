@@ -93,7 +93,8 @@ export class AttackComponent implements OnInit {
     const groupInhibition: number = value[GROUP_INHIBITION];
     const atkBuff: number = (1 + (value[ATK_BUFF] / 100));
     const card: number = (value[CARD] === 2 || value[CARD] === 3.5) ? 1 : value[CARD];
-    const cardBuff: number = card * value[CARD_ORDER] * (1 + value[CARD_BUFF] / 100) + value[FIRST_CARD];
+    const cardOrder: number = (value[CARD_ORDER] === 0) ? 1 : value[CARD_ORDER];
+    const cardBuff: number = card * cardOrder * (1 + value[CARD_BUFF] / 100) + value[FIRST_CARD];
     const critical: number = value[IS_CRITICAL];
     const criticalBuff: number = (value[IS_CRITICAL] === 1) ? 0 : (value[CRITICAL_BUFF] / 100);
     const specialBuff: number = (1 + (value[SPECIAL_BUFF] / 100) + criticalBuff);

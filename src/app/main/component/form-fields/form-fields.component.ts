@@ -1,5 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { FormFieldItem } from './form-fields.const';
 import { TakaraguModels } from '../../takaragu/takaragu.const';
 @Component({
@@ -16,14 +16,22 @@ export class FormFieldsComponent implements OnChanges {
   constructor(private fb: FormBuilder) { }
 
   public ngOnChanges(): void {
-    this.setForm();
+    this.setForms();
   }
 
-  private setForm(): void {
+  private setForms(): void {
     this.mainFormItems
-      .forEach((item: FormFieldItem) => this.form.addControl(item.modelName, this.fb.control(item.initialValue, [Validators.required])));
+      .forEach((item: FormFieldItem) => this.setForm(item, [Validators.required]));
     this.subFormItems
-      .forEach((item: FormFieldItem) => this.form.addControl(item.modelName, this.fb.control(item.initialValue)));
+      .forEach((item: FormFieldItem) => this.setForm(item));
+  }
+
+  private setForm(item: FormFieldItem, required?: ValidatorFn[]): void {
+    this.form.addControl(item.modelName, this.fb.control(item.initialValue, required));
+    if (item.autoSetting) { // link two forms
+      this.form.controls[item.modelName].valueChanges.subscribe((val) =>
+        this.form.patchValue({ [item.autoSetting.linkName]: item.autoSetting.value(val) }));
+    }
   }
 
   public calculate(): void {
