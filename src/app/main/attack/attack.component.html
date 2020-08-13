@@ -1,3 +1,8 @@
-<div class="ml-4">
-    敬請期待
-</div>
+<app-form-fields
+  [mainFormItems]="mainFormItems"
+  [subFormItems]="subFormItems"
+  (calValue)="calculate($event)">
+</app-form-fields>
+
+<app-table [data]="damageList" [colModels]="colModels"
+[displayedColumns]="displayedColumns"></app-table>
