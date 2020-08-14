@@ -37,6 +37,9 @@ export class FormFieldsComponent implements OnChanges {
   public calculate(): void {
     const resultValue: TakaraguModels = {...this.form.value};
     const keys: string[] = Object.keys(resultValue);
+    if (this.form.invalid) {
+      return;
+    }
     keys.forEach((key) => resultValue[key] = Number(resultValue[key])); // select value will be string
     this.calValue.emit(resultValue);
   }

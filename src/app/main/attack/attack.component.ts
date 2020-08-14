@@ -70,7 +70,6 @@ export class AttackComponent implements OnInit {
   }
 
   public calculate(value: AtkModels): void {
-    console.log(value);
     /* 公式 =
     ATK ×
     攻擊補正 ×
