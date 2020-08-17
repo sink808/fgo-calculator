@@ -3,6 +3,10 @@ interface AutoSetting {
   value: (val: string) => number;
 }
 
+interface Autocomplete {
+  name: string;
+}
+
 export interface SelectOption {
   title: string;
   value: number;
@@ -16,6 +20,8 @@ export interface FormFieldItem {
   tooltip?: string;
   selectOptions?: SelectOption[];
   autoSetting?: AutoSetting;
+  autocomplete?: Autocomplete;
+  options?: SelectOption[];
 }
 
 

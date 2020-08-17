@@ -28,14 +28,19 @@
             <mat-form-field appearance="outline">
                 <mat-label>{{ formItem.title }}</mat-label>
                 <input *ngIf="formItem.type === 'input'" matInput type="number" [required]="isInputRequired"
-                    [formControlName]="formItem.modelName">
+                    [formControlName]="formItem.modelName" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of formItem.options" [value]="option.value">
+                        {{ option.title }}
+                    </mat-option>
+                </mat-autocomplete>
+           
                 <select *ngIf="formItem.type === 'select'" matNativeControl [required]="isInputRequired"
                     [formControlName]="formItem.modelName">
                     <ng-container *ngFor="let selectOption of formItem.selectOptions">
                         <option [value]="selectOption.value">{{ selectOption.title }}</option>
                     </ng-container>
                 </select>
-                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
         </ng-container>
     </form>

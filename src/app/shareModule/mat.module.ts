@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   imports: [
     MatTabsModule,
@@ -24,7 +25,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTooltipModule,
     MatPaginatorModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatTabsModule,
@@ -38,7 +40,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTooltipModule,
     MatPaginatorModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule
   ]
 })
 export class MatModule { }

@@ -49,3 +49,12 @@ export const cardSelectOptions: SelectOption[] = [
   {title: 'Arts(藍)', value: 1},
   {title: 'Quick(綠)', value: 0.8}
 ];
+
+export const equipmentAtkOptions: SelectOption[] = [
+  {title: '786(lv20 寶石翁)', value: 786},
+  {title: '943(lv20 黑杯)', value: 943},
+  {title: '1089(lv40 寶石翁)', value: 1089},
+  {title: '1307(lv40 黑杯)', value: 1307},
+  {title: '2000(lv100 寶石翁)', value: 2000},
+  {title: '2400(lv100 黑杯)', value: 2400}
+];

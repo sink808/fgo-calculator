@@ -14,7 +14,8 @@ import {
   AVG_DAMAGE,
   classSelectOptions,
   classInhibitionSelectOptions,
-  groupInhibitionSelectOptions
+  groupInhibitionSelectOptions,
+  equipmentAtkOptions
 } from '../main.const';
 
 export const CARD = 'card';
@@ -112,7 +113,8 @@ export const mainFormItems: FormFieldItem[] = [
 ];
 
 export const subFormItems: FormFieldItem[] = [
-  {title: '禮裝ATK', type: 'input', modelName: EQUIPMENT_ATK, initialValue: 0},
+  {title: '禮裝ATK', type: 'input', modelName: EQUIPMENT_ATK, initialValue: 0, options: equipmentAtkOptions
+  },
   {title: 'ATK Buff(%)', type: 'input', modelName: ATK_BUFF, initialValue: 0, tooltip: '攻擊力Buff — 敵方防禦力Buff — 敵方特防威力Buff'},
   {title: '色卡 Buff(%)', type: 'input', modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
   {title: '特攻威力 Buff(%)', type: 'input', modelName: SPECIAL_BUFF, initialValue: 0},
