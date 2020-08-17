@@ -1,7 +1,9 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ColModel } from './table.const';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { AtkColModels } from '../../attack/attack.const';
+import { TakaraguColModels } from '../../takaragu/takaragu.const';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -15,13 +17,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ]
 })
 export class TableComponent implements OnInit, OnChanges {
-  @Input() public data: any[] = [];
+  @Input() public data: AtkColModels[] | TakaraguColModels[]  = [];
   @Input() public colModels: ColModel[] = [];
   @Input() public displayedColumns: string[] = [];
   public dataSource = new MatTableDataSource<any>();
-  public expandedElement: any;
+  public expandedElement: AtkColModels | TakaraguColModels;
   public expandColumns: string[] = [];
-  constructor() { }
+  constructor() {}
 
   public ngOnInit(): void {
   }
