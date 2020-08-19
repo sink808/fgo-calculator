@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { MainService } from '../main.service';
 import { FormFieldItem } from '../component/form-fields/form-fields.const';
 import { ColModel } from '../component/table/table.const';
@@ -48,10 +47,8 @@ export class AttackComponent implements OnInit {
   public colModels: ColModel[] = this.getColModels(); // table cols title and key
   public displayedColumns: string[] = displayedColumns; // table main cols key
   constructor(
-    private title: Title,
     private mainService: MainService
   ) {
-    this.title.setTitle('指令卡傷害計算');
   }
 
   ngOnInit(): void {

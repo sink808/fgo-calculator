@@ -5,9 +5,14 @@ import {
 } from '@angular/core';
 import {
   ActivatedRoute,
-  Routes
+  Route,
+  Routes,
+  Router,
+  NavigationEnd,
+  RouterEvent
 } from '@angular/router';
-
+import { filter } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 interface NavItem {
   path: string;
   label: string;
@@ -25,9 +30,17 @@ export class MainComponent implements OnInit {
   navLinks: NavItem[] = [];
   constructor(
     private route: ActivatedRoute,
-  ) {}
+    private router: Router,
+    private title: Title,
+  ) {
+    this.setWebTitle();
+  }
 
   ngOnInit(): void {
+    this.setNavLinks();
+  }
+
+  private setNavLinks(): void {
     const isRouteConfigChildren: boolean = !!(this.route.routeConfig && this.route.routeConfig.children);
     this.navLinks = (isRouteConfigChildren) ?
       this.buildNavItems(this.route.routeConfig.children) :
@@ -42,6 +55,18 @@ export class MainComponent implements OnInit {
         label: data.label,
         icon: data.icon
       }));
+  }
+
+  private setWebTitle(): void {
+    this.router.events
+    .pipe(
+      filter((event: RouterEvent) => event instanceof NavigationEnd)
+    )
+    .subscribe((router: RouterEvent) => {
+      const nowUrl: string = router.url.replace('/', '');
+      const nowRoute: Route = this.route.routeConfig.children.find((child) => nowUrl === child.path);
+      this.title.setTitle(nowRoute.data.label);
+    });
   }
 
 }
