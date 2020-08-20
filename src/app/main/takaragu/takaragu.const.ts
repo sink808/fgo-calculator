@@ -72,6 +72,7 @@ const npPowerOptions: SelectOption[] = [
   {title: '662.5', value: 662.5},
   {title: '650', value: 650},
   {title: '675', value: 675},
+  {title: '700', value: 700},
   {title: '712.5', value: 712.5},
   {title: '750', value: 750},
   {title: '800', value: 800},
