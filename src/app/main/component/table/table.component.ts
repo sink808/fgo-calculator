@@ -33,10 +33,14 @@ export class TableComponent implements OnInit, OnChanges {
       this.pushDataToTable();
     }
     if (changes.colModels && changes.displayedColumns) {
-      this.expandColumns = this.colModels
-        .map((col) => col.key)
-        .filter((col) => this.displayedColumns.indexOf(col) === -1); // except displayedColumns
+      this.loadExpandColumns();
     }
+  }
+
+  private loadExpandColumns(): void {
+    this.expandColumns = this.colModels
+      .map((col) => col.key)
+      .filter((col) => this.displayedColumns.indexOf(col) === -1); // except displayedColumns
   }
 
   private pushDataToTable(): void {
