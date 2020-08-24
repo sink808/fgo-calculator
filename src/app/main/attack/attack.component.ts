@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MainService } from '../main.service';
 import { FormFieldItem } from '../component/form-fields/form-fields.const';
 import { ColModel } from '../component/table/table.const';
@@ -40,18 +40,14 @@ import {
   templateUrl: './attack.component.html',
   styleUrls: ['./attack.component.scss']
 })
-export class AttackComponent implements OnInit {
+export class AttackComponent {
   public mainFormItems: FormFieldItem[] = mainFormItems;
   public subFormItems: FormFieldItem[] = subFormItems;
   public damageList: AtkColModels[] = []; // all cols value for table
   public colModels: ColModel[] = this.getColModels(); // table cols title and key
   public displayedColumns: string[] = displayedColumns; // table main cols key
   constructor(
-    private mainService: MainService
-  ) {
-  }
-
-  ngOnInit(): void {
+    private mainService: MainService) {
   }
 
   private getColModels(): ColModel[] {

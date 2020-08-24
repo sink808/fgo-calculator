@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormFieldItem } from '../component/form-fields/form-fields.const';
 import { ColModel } from '../component/table/table.const';
 import { MainService } from '../main.service';
@@ -35,7 +35,7 @@ import {
   templateUrl: './takaragu.component.html',
   styleUrls: ['./takaragu.component.scss']
 })
-export class TakaraguComponent implements OnInit {
+export class TakaraguComponent {
   public mainFormItems: FormFieldItem[] = mainFormItems;
   public subFormItems: FormFieldItem[] = subFormItems;
   public damageList: TakaraguColModels[] = []; // all cols value for table
@@ -43,11 +43,6 @@ export class TakaraguComponent implements OnInit {
   public displayedColumns: string[] = displayedColumns; // table main cols key
   constructor(
     private mainService: MainService) {
-
-  }
-
-  ngOnInit(): void {
-
   }
 
   private getColModels(): ColModel[] {
