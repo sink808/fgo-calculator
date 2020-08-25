@@ -56,7 +56,7 @@ export class TableComponent implements OnInit, OnChanges {
         top: document.body.scrollHeight,
         behavior: 'smooth'
       });
-    }, 5); // 等畫面render
+    }, 5); // waiting render
   }
 
 }
