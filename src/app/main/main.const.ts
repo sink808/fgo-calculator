@@ -12,6 +12,7 @@ export const FIXED_BUFF = 'fixedBuff';
 export const MAX_DAMAGE = 'maxDamage';
 export const MIN_DAMAGE = 'minDamage';
 export const AVG_DAMAGE = 'avgDamage';
+export const REMOVE = 'remove';
 
 export const classSelectOptions: SelectOption[] = [
   {title: 'Saber', value: 1},

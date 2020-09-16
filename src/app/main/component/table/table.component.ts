@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ColModel } from './table.const';
 import { AtkColModels } from '../../attack/attack.const';
@@ -20,6 +20,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() public data: AtkColModels[] | TakaraguColModels[]  = [];
   @Input() public colModels: ColModel[] = [];
   @Input() public displayedColumns: string[] = [];
+  @Output() public removeData: EventEmitter<(AtkColModels | TakaraguColModels)[]> = new EventEmitter();
   public dataSource = new MatTableDataSource<any>();
   public expandedElement: AtkColModels | TakaraguColModels;
   public expandColumns: string[] = [];
@@ -57,6 +58,10 @@ export class TableComponent implements OnInit, OnChanges {
         behavior: 'smooth'
       });
     }, 5); // waiting render
+  }
+
+  public remove(element: AtkColModels | TakaraguColModels): void {
+    this.removeData.emit([...this.data].filter((item) => item !== element));
   }
 
 }

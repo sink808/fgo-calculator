@@ -12,6 +12,7 @@ import {
   MAX_DAMAGE,
   MIN_DAMAGE,
   AVG_DAMAGE,
+  REMOVE,
   classSelectOptions,
   classInhibitionSelectOptions,
   groupInhibitionSelectOptions,
@@ -122,4 +123,4 @@ export const subFormItems: FormFieldItem[] = [
   {title: '固定傷害 Buff', type: 'input', modelName: FIXED_BUFF, initialValue: 0}
 ];
 
-export const displayedColumns: string[] = [MAX_DAMAGE, MIN_DAMAGE, AVG_DAMAGE];
+export const displayedColumns: string[] = [MAX_DAMAGE, MIN_DAMAGE, AVG_DAMAGE, REMOVE];

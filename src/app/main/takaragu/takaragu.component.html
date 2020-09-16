@@ -5,4 +5,4 @@
 </app-form-fields>
 
 <app-table [data]="damageList" [colModels]="colModels"
-[displayedColumns]="displayedColumns"></app-table>
+[displayedColumns]="displayedColumns" (removeData)="damageList = $event"></app-table>

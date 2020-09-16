@@ -3,8 +3,16 @@
 
         <ng-container *ngFor="let col of displayedColumns">
             <ng-container [matColumnDef]="col">
-                <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
+                <ng-container *ngIf="col !=='remove'">
+                    <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
+                </ng-container>
+                <ng-container *ngIf="col ==='remove'">
+                    <mat-header-cell class="remove-col" *matHeaderCellDef>  </mat-header-cell>
+                    <mat-cell class="remove-col" *matCellDef="let element">
+                        <mat-icon color="warn" (click)="remove(element)">delete_forever</mat-icon>
+                    </mat-cell>
+                </ng-container>
             </ng-container>
         </ng-container>
         <ng-container matColumnDef="expandedDetail">
