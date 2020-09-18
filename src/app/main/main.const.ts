@@ -1,4 +1,4 @@
-import { SelectOption } from './component/form-fields/form-fields.const';
+import { SelectOption } from '@component/form-fields/form-fields.const';
 
 export const ATK = 'atk';
 export const CLASS = 'class';

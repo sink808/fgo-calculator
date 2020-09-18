@@ -6,10 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TakaraguComponent } from './takaragu/takaragu.component';
 import { AttackComponent } from './attack/attack.component';
 import { NpComponent } from './np/np.component';
-import { MatModule } from '../shareModule/mat.module';
-import { FormFieldsComponent } from './component/form-fields/form-fields.component';
-import { TableComponent } from './component/table/table.component';
-import { GetColTitlePipe } from './component/get-col-title/get-col-title.pipe';
+import { MatModule } from '@shareModule/mat.module';
+import { FormFieldsComponent } from '@component/form-fields/form-fields.component';
+import { TableComponent } from '@component/table/table.component';
+import { GetColTitlePipe } from '@component/get-col-title/get-col-title.pipe';
 import { MainService } from './main.service';
 const routes: Routes = [
   {

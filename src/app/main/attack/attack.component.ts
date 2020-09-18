@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MainService } from '../main.service';
-import { FormFieldItem } from '../component/form-fields/form-fields.const';
-import { ColModel } from '../component/table/table.const';
+import { FormFieldItem } from '@component/form-fields/form-fields.const';
+import { ColModel } from '@component/table/table.const';
 import {
   CARD,
   CARD_ORDER,

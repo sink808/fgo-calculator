@@ -1,4 +1,4 @@
-import { SelectOption, FormFieldItem } from '../component/form-fields/form-fields.const';
+import { SelectOption, FormFieldItem } from '@component/form-fields/form-fields.const';
 import {
   ATK,
   CLASS,

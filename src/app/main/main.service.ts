@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SelectOption, FormFieldItem } from './component/form-fields/form-fields.const';
+import { SelectOption, FormFieldItem } from '@component/form-fields/form-fields.const';
 @Injectable({
   providedIn: 'root'
 })
