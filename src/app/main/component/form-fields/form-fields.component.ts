@@ -45,9 +45,7 @@ export class FormFieldsComponent implements OnChanges {
   }
 
   public reset(): void {
-    this.mainFormItems
-      .forEach((item: FormFieldItem) => this.form.patchValue({[item.modelName]: item.initialValue}));
-    this.subFormItems
+    [...this.mainFormItems,  ...this.subFormItems]
       .forEach((item: FormFieldItem) => this.form.patchValue({[item.modelName]: item.initialValue}));
   }
 
