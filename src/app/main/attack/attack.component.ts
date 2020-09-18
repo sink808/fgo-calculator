@@ -13,12 +13,7 @@ import {
   AtkColModels,
   mainFormItems,
   subFormItems,
-  displayedColumns,
-  cardDmgSelectOptions,
-  cardOrderSelectOptions,
-  firstCardSelectOptions,
-  busterChainSelectOptions,
-  isCriticalSelectOptions } from './attack.const';
+  displayedColumns } from './attack.const';
 import {
   ATK,
   CLASS,
@@ -31,10 +26,7 @@ import {
   FIXED_BUFF,
   MAX_DAMAGE,
   MIN_DAMAGE,
-  AVG_DAMAGE,
-  classSelectOptions,
-  classInhibitionSelectOptions,
-  groupInhibitionSelectOptions } from '../main.const';
+  AVG_DAMAGE } from '../main.const';
 @Component({
   selector: 'app-attack',
   templateUrl: './attack.component.html',
@@ -52,8 +44,8 @@ export class AttackComponent {
 
   private getColModels(): ColModel[] {
     const model = [];
-    this.mainFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
-    this.subFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
+    [...this.mainFormItems, ...this.subFormItems]
+      .forEach((item) => model.push({title: item.title, key: item.modelName}));
     model.push(
       { title: '最大傷害', key: MAX_DAMAGE },
       { title: '最小傷害', key: MIN_DAMAGE },
@@ -62,7 +54,7 @@ export class AttackComponent {
     return model;
   }
 
-  public calculate(value: AtkModels): void {
+  public calculate(inputModel: AtkModels): void {
     /* 公式 =
     ATK ×
     攻擊補正 ×
@@ -78,51 +70,33 @@ export class AttackComponent {
     ( 固定傷害BUFF — 敵方固定傷害BUFF ) +
     ATK × Buster Chain加成
     */
-
-    const atk: number = (value[ATK] + value[EQUIPMENT_ATK]);
-    const classValue: number = value[CLASS];
-    const classInhibition: number = value[CLASS_INHIBITION];
-    const groupInhibition: number = value[GROUP_INHIBITION];
-    const atkBuff: number = (1 + (value[ATK_BUFF] / 100));
-    const card: number = (value[CARD] === 2 || value[CARD] === 3.5) ? 1 : value[CARD];
-    const cardOrder: number = (value[CARD_ORDER] === 0) ? 1 : value[CARD_ORDER];
-    const cardBuff: number = card * cardOrder * (1 + value[CARD_BUFF] / 100) + value[FIRST_CARD];
-    const critical: number = value[IS_CRITICAL];
-    const criticalBuff: number = (value[IS_CRITICAL] === 1) ? 0 : (value[CRITICAL_BUFF] / 100);
-    const specialBuff: number = (1 + (value[SPECIAL_BUFF] / 100) + criticalBuff);
-    const exBuff: number = (value[CARD] !== 2 && value[CARD] !== 3.5) ? 1 : value[CARD];
+    const model: AtkModels = this.mainService.indexToValue(inputModel, [...this.mainFormItems, ...this.subFormItems]);
+    const atk: number = (model[ATK] + model[EQUIPMENT_ATK]);
+    const classValue: number = +model[CLASS];
+    const classInhibition: number = +model[CLASS_INHIBITION];
+    const groupInhibition: number = +model[GROUP_INHIBITION];
+    const atkBuff: number = (1 + (model[ATK_BUFF] / 100));
+    const card: number = (model[CARD] === 2 || model[CARD] === 3.5) ? 1 : +model[CARD];
+    const cardOrder: number = (model[CARD_ORDER] === 0) ? 1 : +model[CARD_ORDER];
+    const cardBuff: number = card * cardOrder * (1 + model[CARD_BUFF] / 100) + +model[FIRST_CARD];
+    const critical: number = +model[IS_CRITICAL];
+    const criticalBuff: number = (model[IS_CRITICAL] === 1) ? 0 : (model[CRITICAL_BUFF] / 100);
+    const specialBuff: number = (1 + (model[SPECIAL_BUFF] / 100) + criticalBuff);
+    const exBuff: number = (model[CARD] !== 2 && model[CARD] !== 3.5) ? 1 : +model[CARD];
     const correction = 0.23;
     const maxRandomNum = 1.1;
     const minRandomNum = 0.9;
-    const fixedValue: number = value[FIXED_BUFF];
-    const busterChain: number = atk * value[BUSTER_CHAIN];
+    const fixedValue: number = model[FIXED_BUFF];
+    const busterChain: number = atk * +model[BUSTER_CHAIN];
     const normalValue: number = atk * correction * cardBuff * classValue * classInhibition *
       groupInhibition * atkBuff * specialBuff * critical * exBuff;
-    const col: AtkColModels = modelsToColModels.call(this);
-
+    const displayedCol = {
+      [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue + busterChain,
+      [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue + busterChain,
+      [AVG_DAMAGE]: normalValue * 1 + fixedValue + busterChain
+    };
+    const colModel: AtkColModels = {...inputModel, ...displayedCol };
+    const col: AtkColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
     this.damageList = [col, ...this.damageList]; // for @Input change
-
-    function modelsToColModels(): AtkColModels {
-      return {
-        [ATK]: value[ATK],
-        [CLASS]: this.mainService.getOptionTitle(value[CLASS], classSelectOptions),
-        [CLASS_INHIBITION]: this.mainService.getOptionTitle(value[CLASS_INHIBITION], classInhibitionSelectOptions),
-        [GROUP_INHIBITION]: this.mainService.getOptionTitle(value[GROUP_INHIBITION], groupInhibitionSelectOptions),
-        [CARD]: this.mainService.getOptionTitle(value[CARD], cardDmgSelectOptions),
-        [CARD_ORDER]: this.mainService.getOptionTitle(value[CARD_ORDER], cardOrderSelectOptions),
-        [FIRST_CARD]: this.mainService.getOptionTitle(value[FIRST_CARD], firstCardSelectOptions),
-        [BUSTER_CHAIN]: this.mainService.getOptionTitle(value[BUSTER_CHAIN], busterChainSelectOptions),
-        [EQUIPMENT_ATK]: value[EQUIPMENT_ATK],
-        [ATK_BUFF]: value[ATK_BUFF],
-        [CARD_BUFF]: value[CARD_BUFF],
-        [SPECIAL_BUFF]: value[SPECIAL_BUFF],
-        [IS_CRITICAL]: this.mainService.getOptionTitle(value[IS_CRITICAL], isCriticalSelectOptions),
-        [CRITICAL_BUFF]: value[CRITICAL_BUFF],
-        [FIXED_BUFF]: value[FIXED_BUFF],
-        [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue + busterChain,
-        [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue + busterChain,
-        [AVG_DAMAGE]: normalValue + fixedValue + busterChain
-      };
-    }
   }
 }

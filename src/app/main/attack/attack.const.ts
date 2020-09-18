@@ -28,38 +28,23 @@ export const CRITICAL_BUFF = 'criticalBuff';
 
 export interface AtkModels {
   [ATK]: number;
-  [CLASS]: number;
-  [CLASS_INHIBITION]: number;
-  [GROUP_INHIBITION]: number;
-  [CARD]: number;
-  [CARD_ORDER]: number;
-  [FIRST_CARD]: number;
-  [BUSTER_CHAIN]: number;
+  [CLASS]: number | string;
+  [CLASS_INHIBITION]: number | string;
+  [GROUP_INHIBITION]: number | string;
+  [CARD]: number | string;
+  [CARD_ORDER]: number | string;
+  [FIRST_CARD]: number | string;
+  [BUSTER_CHAIN]: number | string;
   [EQUIPMENT_ATK]: number;
   [ATK_BUFF]: number;
   [CARD_BUFF]: number;
   [SPECIAL_BUFF]: number;
-  [IS_CRITICAL]: number;
+  [IS_CRITICAL]: number | string;
   [CRITICAL_BUFF]: number;
   [FIXED_BUFF]: number;
 }
 
-export interface AtkColModels {
-  [ATK]: number;
-  [CLASS]: string;
-  [CLASS_INHIBITION]: string;
-  [GROUP_INHIBITION]: string;
-  [CARD]: string;
-  [CARD_ORDER]: string;
-  [FIRST_CARD]: string;
-  [BUSTER_CHAIN]: string;
-  [EQUIPMENT_ATK]: number;
-  [ATK_BUFF]: number;
-  [CARD_BUFF]: number;
-  [SPECIAL_BUFF]: number;
-  [IS_CRITICAL]: string;
-  [CRITICAL_BUFF]: number;
-  [FIXED_BUFF]: number;
+export interface AtkColModels extends AtkModels {
   [MAX_DAMAGE]: number;
   [MIN_DAMAGE]: number;
   [AVG_DAMAGE]: number;
@@ -97,19 +82,19 @@ export const isCriticalSelectOptions: SelectOption[] = [
 
 export const mainFormItems: FormFieldItem[] = [
   {title: 'ATK', type: 'input', modelName: ATK, initialValue: 0},
-  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 1},
-  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 2},
-  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 1},
-  {title: '卡片顏色', type: 'select', modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 1.5,
+  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
+  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 0},
+  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
+  {title: '卡片顏色', type: 'select', modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 0,
     autoSetting: {
       linkName: CARD_ORDER,
       value: (val: string) => {
-        return (val === '2' || val === '3.5') ? 0 : 1;
+        return (val === '3' || val === '4') ? 3 : 0;
       }
     }
   },
-  {title: '卡片位置', type: 'select', modelName: CARD_ORDER, selectOptions: cardOrderSelectOptions, initialValue: 1},
-  {title: '首卡顏色', type: 'select', modelName: FIRST_CARD, selectOptions: firstCardSelectOptions, initialValue: 0.5},
+  {title: '卡片位置', type: 'select', modelName: CARD_ORDER, selectOptions: cardOrderSelectOptions, initialValue: 0},
+  {title: '首卡顏色', type: 'select', modelName: FIRST_CARD, selectOptions: firstCardSelectOptions, initialValue: 0},
   {title: 'Buster Chain加成', type: 'select', modelName: BUSTER_CHAIN, selectOptions: busterChainSelectOptions, initialValue: 0}
 ];
 
@@ -120,7 +105,7 @@ export const subFormItems: FormFieldItem[] = [
   {title: '色卡 Buff(%)', type: 'input', modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
   {title: '特攻威力 Buff(%)', type: 'input', modelName: SPECIAL_BUFF, initialValue: 0},
   {title: '固定傷害 Buff', type: 'input', modelName: FIXED_BUFF, initialValue: 0},
-  {title: '是否爆擊', type: 'select', modelName: IS_CRITICAL, initialValue: 1, selectOptions: isCriticalSelectOptions},
+  {title: '是否爆擊', type: 'select', modelName: IS_CRITICAL, initialValue: 0, selectOptions: isCriticalSelectOptions},
   {title: '爆擊威力 Buff(%)', type: 'input', modelName: CRITICAL_BUFF, initialValue: 0}
 ];
 

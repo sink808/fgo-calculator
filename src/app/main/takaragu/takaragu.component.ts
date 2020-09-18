@@ -24,11 +24,7 @@ import {
   FIXED_BUFF,
   MAX_DAMAGE,
   MIN_DAMAGE,
-  AVG_DAMAGE,
-  classSelectOptions,
-  classInhibitionSelectOptions,
-  groupInhibitionSelectOptions,
-  cardSelectOptions } from '../main.const';
+  AVG_DAMAGE } from '../main.const';
 
 @Component({
   selector: 'app-takaragu',
@@ -47,8 +43,8 @@ export class TakaraguComponent {
 
   private getColModels(): ColModel[] {
     const model = [];
-    this.mainFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
-    this.subFormItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
+    [...this.mainFormItems, ...this.subFormItems]
+      .forEach((item) => model.push({title: item.title, key: item.modelName}));
     model.push(
       { title: '最大傷害', key: MAX_DAMAGE },
       { title: '最小傷害', key: MIN_DAMAGE },
@@ -57,7 +53,7 @@ export class TakaraguComponent {
     return model;
   }
 
-  public calculate(value: TakaraguModels): void {
+  public calculate(inputModel: TakaraguModels): void {
     /* 公式 =
     ATK ×
     攻擊補正 ×
@@ -72,45 +68,32 @@ export class TakaraguComponent {
     ( 固定傷害BUFF — 敵方固定傷害BUFF )
     */
     // 公式相關
-    const atk: number = (value[ATK] + value[EQUIPMENT_ATK]);
-    const npCard: number = ((value[NP_POWER] / 100) * value[NP_CARD] * (1 + value[CARD_BUFF] / 100));
-    const classValue: number = value[CLASS];
-    const classInhibition: number = value[CLASS_INHIBITION];
-    const groupInhibition: number = value[GROUP_INHIBITION];
-    const atkBuff: number = (1 + (value[ATK_BUFF] / 100));
-    const npBuff: number = (1 + (value[SPECIAL_BUFF] / 100) + (value[NP_BUFF] / 100) );
-    const specialNpBuff: number = (value[SPECIAL_NP_BUFF] / 100);
+    const model: TakaraguModels = this.mainService.indexToValue(inputModel, [...this.mainFormItems, ...this.subFormItems]);
+    const atk: number = (model[ATK] + model[EQUIPMENT_ATK]);
+    const npCard: number = ((model[NP_POWER] / 100) * +model[NP_CARD] * (1 + model[CARD_BUFF] / 100));
+    const classValue: number = +model[CLASS];
+    const classInhibition: number = +model[CLASS_INHIBITION];
+    const groupInhibition: number = +model[GROUP_INHIBITION];
+    const atkBuff: number = (1 + (model[ATK_BUFF] / 100));
+    const npBuff: number = (1 + (model[SPECIAL_BUFF] / 100) + (model[NP_BUFF] / 100) );
+    const specialNpBuff: number = (model[SPECIAL_NP_BUFF] / 100);
     const correction = 0.23;
     const maxRandomNum = 1.1;
     const minRandomNum = 0.9;
-    const fixedValue: number = value[FIXED_BUFF];
+    const fixedValue: number = model[FIXED_BUFF];
     const normalValue: number = atk * correction * npCard * classValue * classInhibition *
     groupInhibition * atkBuff * npBuff * specialNpBuff;
     // 轉換為table要顯示的值
-    const col: TakaraguColModels = modelsToColModels.call(this);
+    const displayedCol = {
+      [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue,
+      [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue,
+      [AVG_DAMAGE]: normalValue * 1 + fixedValue,
+    };
+    const colModel: TakaraguColModels = {...inputModel, ...displayedCol };
+    const col: TakaraguColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
 
     this.damageList  = [col, ...this.damageList]; // for @Input change
 
-    function modelsToColModels(): TakaraguColModels {
-      return {
-        [ATK]: value[ATK],
-        [CLASS]: this.mainService.getOptionTitle(value[CLASS], classSelectOptions),
-        [CLASS_INHIBITION]: this.mainService.getOptionTitle(value[CLASS_INHIBITION], classInhibitionSelectOptions),
-        [GROUP_INHIBITION]: this.mainService.getOptionTitle(value[GROUP_INHIBITION], groupInhibitionSelectOptions),
-        [NP_CARD]: this.mainService.getOptionTitle(value[NP_CARD], cardSelectOptions),
-        [NP_POWER]: value[NP_POWER],
-        [EQUIPMENT_ATK]: value[EQUIPMENT_ATK],
-        [ATK_BUFF]: value[ATK_BUFF],
-        [CARD_BUFF]: value[CARD_BUFF],
-        [NP_BUFF]: value[NP_BUFF],
-        [SPECIAL_BUFF]: value[SPECIAL_BUFF],
-        [SPECIAL_NP_BUFF]: value[SPECIAL_NP_BUFF],
-        [FIXED_BUFF]: value[FIXED_BUFF],
-        [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue,
-        [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue,
-        [AVG_DAMAGE]: normalValue * 1 + fixedValue,
-      };
-    }
   }
 
 }

@@ -37,8 +37,8 @@
            
                 <select *ngIf="formItem.type === 'select'" matNativeControl [required]="isInputRequired"
                     [formControlName]="formItem.modelName">
-                    <ng-container *ngFor="let selectOption of formItem.selectOptions">
-                        <option [value]="selectOption.value">{{ selectOption.title }}</option>
+                    <ng-container *ngFor="let selectOption of formItem.selectOptions; let index = index;">
+                        <option [value]="index">{{ selectOption.title }}</option>
                     </ng-container>
                 </select>
             </mat-form-field>

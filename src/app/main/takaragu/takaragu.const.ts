@@ -27,10 +27,10 @@ export const SPECIAL_NP_BUFF = 'specialNpBuff';
 
 export interface TakaraguModels {
   [ATK]: number;
-  [CLASS]: number;
-  [CLASS_INHIBITION]: number;
-  [GROUP_INHIBITION]: number;
-  [NP_CARD]: number;
+  [CLASS]: number | string;
+  [CLASS_INHIBITION]: number | string;
+  [GROUP_INHIBITION]: number | string;
+  [NP_CARD]: number | string;
   [NP_POWER]: number;
   [EQUIPMENT_ATK]: number;
   [ATK_BUFF]: number;
@@ -41,20 +41,7 @@ export interface TakaraguModels {
   [FIXED_BUFF]: number;
 }
 
-export interface TakaraguColModels {
-  [ATK]: number;
-  [CLASS]: string;
-  [CLASS_INHIBITION]: string;
-  [GROUP_INHIBITION]: string;
-  [NP_CARD]: string;
-  [NP_POWER]: number;
-  [EQUIPMENT_ATK]: number;
-  [ATK_BUFF]: number;
-  [CARD_BUFF]: number;
-  [NP_BUFF]: number;
-  [SPECIAL_BUFF]: number;
-  [SPECIAL_NP_BUFF]: number;
-  [FIXED_BUFF]: number;
+export interface TakaraguColModels extends TakaraguModels {
   [MAX_DAMAGE]: number;
   [MIN_DAMAGE]: number;
   [AVG_DAMAGE]: number;
@@ -106,11 +93,11 @@ const npPowerOptions: SelectOption[] = [
 
 export const mainFormItems: FormFieldItem[] = [
   {title: 'ATK', type: 'input', modelName: ATK, initialValue: 0},
-  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 1},
-  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 2},
-  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 1},
-  {title: '寶具顏色', type: 'select', modelName: NP_CARD, selectOptions: cardSelectOptions, initialValue: 1.5},
-  {title: '寶具倍率(%)', type: 'input', modelName: NP_POWER, initialValue: 0, options: npPowerOptions}
+  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
+  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 1},
+  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
+  {title: '寶具顏色', type: 'select', modelName: NP_CARD, selectOptions: cardSelectOptions, initialValue: 0},
+  {title: '寶具倍率(%)', type: 'input', modelName: NP_POWER, initialValue: 300, options: npPowerOptions}
 ];
 
 export const subFormItems: FormFieldItem[] = [
