@@ -1,32 +1,26 @@
 <div class="container mb-4" style="margin-top: 100px" *ngIf="data.length > 0">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
 
-        <ng-container *ngFor="let col of displayedColumns">
-            <ng-container [matColumnDef]="col">
-                <ng-container *ngIf="col !=='remove'">
-                    <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
-                </ng-container>
-                <ng-container *ngIf="col ==='remove'">
-                    <mat-header-cell class="remove-col" *matHeaderCellDef>  </mat-header-cell>
-                    <mat-cell class="remove-col" *matCellDef="let element">
-                        <mat-icon color="warn" (click)="remove(element)">delete_forever</mat-icon>
-                    </mat-cell>
-                </ng-container>
+        <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
+            <ng-container *ngIf="col !=='remove'">
+                <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
+            </ng-container>
+            <ng-container *ngIf="col ==='remove'">
+                <mat-header-cell class="remove-col" *matHeaderCellDef>  </mat-header-cell>
+                <mat-cell class="remove-col" *matCellDef="let element">
+                    <mat-icon color="warn" (click)="remove(element)">delete_forever</mat-icon>
+                </mat-cell>
             </ng-container>
         </ng-container>
         <ng-container matColumnDef="expandedDetail">
             <mat-cell *matCellDef="let element">
                 <div class="element-detail" [@detailExpand]="(element === expandedElement) ? 'expanded' : 'collapsed'">
                     <mat-grid-list cols="2" rowHeight="65px">
-                        <ng-container *ngFor="let col of expandColumns">
-                            <mat-grid-tile>
-                                <div>
-                                    <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
-                                    <span>{{ element[col] }}</span>
-                                </div>
-                            </mat-grid-tile>
-                        </ng-container>
+                        <mat-grid-tile *ngFor="let col of expandColumns">
+                            <span class="tile-title">{{ col | getColTitle: colModels }} :&nbsp; </span>
+                            <span>{{ element[col] }}</span>
+                        </mat-grid-tile>
                     </mat-grid-list>
                 </div>
             </mat-cell>

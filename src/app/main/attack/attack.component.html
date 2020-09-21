@@ -4,5 +4,9 @@
   (calValue)="calculate($event)">
 </app-form-fields>
 
-<app-table [data]="damageList" [colModels]="colModels"
-[displayedColumns]="displayedColumns" (removeData)="damageList = $event"></app-table>
+<app-table
+  [data]="damageList"
+  [colModels]="colModels"
+  [displayedColumns]="displayedColumns"
+  (removeData)="damageList = $event">
+</app-table>

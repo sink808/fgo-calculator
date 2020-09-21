@@ -1,12 +1,12 @@
 <div class="container mt-4">
-    <!-- 必填欄位 -->
+    <!-- main form -->
     <mat-card>
         <div class="mb-4">主要數值</div>
         <mat-card-content class="mx-2">
             <div *ngTemplateOutlet="formItems; context: {$implicit: mainFormItems, isInputRequired: true}"></div>
         </mat-card-content>
     </mat-card>
-    <!-- 非必填欄位 -->
+    <!-- sub form -->
     <mat-expansion-panel class="mt-4" *ngIf="subFormItems.length > 0">
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -15,7 +15,7 @@
         </mat-expansion-panel-header>
         <div *ngTemplateOutlet="formItems; context: {$implicit: subFormItems, isInputRequired: false}"></div>
     </mat-expansion-panel>
-    <!-- 按鈕欄 -->
+    <!-- btn -->
     <div class="my-4 float-right">
         <button mat-raised-button class="mr-2" (click)="reset()">重置</button>
         <button mat-raised-button color="primary" (click)="calculate()">計算</button>
@@ -24,25 +24,23 @@
 
 <ng-template #formItems let-formItems let-isInputRequired="isInputRequired">
     <form [formGroup]="form">
-        <ng-container *ngFor="let formItem of formItems">
-            <mat-form-field appearance="outline">
-                <mat-label>{{ formItem.title }}</mat-label>
-                <input *ngIf="formItem.type === INPUT" matInput type="number" [required]="isInputRequired"
-                    [formControlName]="formItem.modelName" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of formItem.options" [value]="option.value">
-                        {{ option.title }}
-                    </mat-option>
-                </mat-autocomplete>
-           
-                <select *ngIf="formItem.type === SELECT" matNativeControl [required]="isInputRequired"
-                    [formControlName]="formItem.modelName">
-                    <ng-container *ngFor="let selectOption of formItem.selectOptions; let index = index;">
-                        <option [value]="index">{{ selectOption.title }}</option>
-                    </ng-container>
-                </select>
-            </mat-form-field>
-        </ng-container>
+        <mat-form-field appearance="outline" *ngFor="let formItem of formItems">
+            <mat-label>{{ formItem.title }}</mat-label>
+            <input *ngIf="formItem.type === INPUT" matInput type="number" [required]="isInputRequired"
+                [formControlName]="formItem.modelName" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of formItem.options" [value]="option.value">
+                    {{ option.title }}
+                </mat-option>
+            </mat-autocomplete>
+        
+            <select *ngIf="formItem.type === SELECT" matNativeControl [required]="isInputRequired"
+                [formControlName]="formItem.modelName">
+                <ng-container *ngFor="let selectOption of formItem.selectOptions; let index = index;">
+                    <option [value]="index">{{ selectOption.title }}</option>
+                </ng-container>
+            </select>
+        </mat-form-field>
     </form>
 </ng-template>
   
