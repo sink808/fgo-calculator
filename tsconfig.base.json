@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@component/*": ["src/app/main/component/*"],
-      "@shareModule/*": ["src/app/shareModule/*"]
+      "@shareModule/*": ["src/app/shareModule/*"],
+      "@main/*": ["src/app/main/*"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

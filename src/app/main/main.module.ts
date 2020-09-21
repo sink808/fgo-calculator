@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainComponent } from './main.component';
+import { MainComponent } from '@main/main.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TakaraguComponent } from './takaragu/takaragu.component';
-import { AttackComponent } from './attack/attack.component';
-import { NpComponent } from './np/np.component';
+import { TakaraguComponent } from '@main/takaragu/takaragu.component';
+import { AttackComponent } from '@main/attack/attack.component';
+import { NpComponent } from '@main/np/np.component';
 import { MatModule } from '@shareModule/mat.module';
 import { FormFieldsComponent } from '@component/form-fields/form-fields.component';
 import { TableComponent } from '@component/table/table.component';
 import { GetColTitlePipe } from '@component/get-col-title/get-col-title.pipe';
-import { MainService } from './main.service';
+import { MainService } from '@main/main.service';
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [

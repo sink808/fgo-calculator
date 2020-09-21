@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ColModel } from '../table/table.const';
+import { ColModel } from '@component/table/table.const';
 @Pipe({
   name: 'getColTitle'
 })

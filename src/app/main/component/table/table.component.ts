@@ -1,10 +1,10 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ColModel } from './table.const';
-import { AtkColModels } from '../../attack/attack.const';
-import { TakaraguColModels } from '../../takaragu/takaragu.const';
+import { ColModel } from '@component/table/table.const';
+import { AtkColModels } from '@main/attack/attack.const';
+import { TakaraguColModels } from '@main/takaragu/takaragu.const';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { REMOVE } from '../../main.const';
+import { REMOVE } from '@main/main.const';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',

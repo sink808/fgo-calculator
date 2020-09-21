@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormFieldItem } from '@component/form-fields/form-fields.const';
 import { ColModel } from '@component/table/table.const';
-import { MainService } from '../main.service';
+import { MainService } from '@main/main.service';
 import {
   NP_CARD,
   NP_POWER,

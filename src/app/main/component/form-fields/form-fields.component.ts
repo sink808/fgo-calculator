@@ -1,11 +1,12 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
-import { FormFieldItem } from './form-fields.const';
-import { TakaraguModels } from '../../takaragu/takaragu.const';
+import { FormFieldItem } from '@component/form-fields/form-fields.const';
+import { TakaraguModels } from '@main/takaragu/takaragu.const';
+import { AtkModels } from '@main/attack/attack.const';
 import {
   INPUT,
   SELECT,
-} from '../../main.const';
+} from '@main/main.const';
 @Component({
   selector: 'app-form-fields',
   templateUrl: './form-fields.component.html',
@@ -14,7 +15,7 @@ import {
 export class FormFieldsComponent implements OnChanges {
   @Input() public mainFormItems: FormFieldItem[] = [];
   @Input() public subFormItems: FormFieldItem[] = [];
-  @Output() private calValue: EventEmitter<TakaraguModels> = new EventEmitter<TakaraguModels>();
+  @Output() private calValue: EventEmitter<TakaraguModels | AtkModels> = new EventEmitter<TakaraguModels | AtkModels>();
   public form: FormGroup = this.fb.group({});
   public INPUT: string = INPUT;
   public SELECT: string = SELECT;
@@ -40,7 +41,7 @@ export class FormFieldsComponent implements OnChanges {
   }
 
   public calculate(): void {
-    const resultValue: TakaraguModels = {...this.form.value};
+    const resultValue: TakaraguModels | AtkModels = {...this.form.value};
     const keys: string[] = Object.keys(resultValue);
     if (this.form.invalid) {
       return;

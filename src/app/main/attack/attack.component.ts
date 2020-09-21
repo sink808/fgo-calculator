@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MainService } from '../main.service';
+import { MainService } from '@main/main.service';
 import { FormFieldItem } from '@component/form-fields/form-fields.const';
 import { ColModel } from '@component/table/table.const';
 import {
@@ -12,7 +12,7 @@ import {
   AtkModels,
   AtkColModels,
   mainFormItems,
-  subFormItems } from './attack.const';
+  subFormItems } from '@main/attack/attack.const';
 import {
   ATK,
   CLASS,
@@ -26,7 +26,7 @@ import {
   MAX_DAMAGE,
   MIN_DAMAGE,
   AVG_DAMAGE,
-  displayedColModels } from '../main.const';
+  displayedColModels } from '@main/main.const';
 @Component({
   selector: 'app-attack',
   templateUrl: './attack.component.html',

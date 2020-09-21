@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SelectOption, FormFieldItem } from '@component/form-fields/form-fields.const';
 import { ColModel } from '@component/table/table.const';
-import { SELECT } from './main.const';
+import { SELECT } from '@main/main.const';
 @Injectable({
   providedIn: 'root'
 })
