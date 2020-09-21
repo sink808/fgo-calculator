@@ -10,7 +10,7 @@ import {
   TakaraguModels,
   TakaraguColModels,
   mainFormItems,
-  subFormItems } from './takaragu.const';
+  subFormItems } from '@main/takaragu/takaragu.const';
 import {
   ATK,
   CLASS,
@@ -24,7 +24,7 @@ import {
   MAX_DAMAGE,
   MIN_DAMAGE,
   AVG_DAMAGE,
-  displayedColModels } from '../main.const';
+  displayedColModels } from '@main/main.const';
 
 @Component({
   selector: 'app-takaragu',

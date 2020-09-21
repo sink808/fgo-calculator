@@ -12,7 +12,6 @@ import {
   MAX_DAMAGE,
   MIN_DAMAGE,
   AVG_DAMAGE,
-  REMOVE,
   INPUT,
   SELECT,
   classSelectOptions,
@@ -20,7 +19,7 @@ import {
   groupInhibitionSelectOptions,
   cardSelectOptions,
   equipmentAtkOptions,
-} from '../main.const';
+} from '@main/main.const';
 
 export const NP_CARD = 'npCard';
 export const NP_POWER = 'npPower';

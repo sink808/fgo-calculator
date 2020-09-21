@@ -12,14 +12,13 @@ import {
   MAX_DAMAGE,
   MIN_DAMAGE,
   AVG_DAMAGE,
-  REMOVE,
   INPUT,
   SELECT,
   classSelectOptions,
   classInhibitionSelectOptions,
   groupInhibitionSelectOptions,
   equipmentAtkOptions
-} from '../main.const';
+} from '@main/main.const';
 
 export const CARD = 'card';
 export const CARD_ORDER = 'cardOrder';
