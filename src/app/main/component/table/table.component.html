@@ -2,11 +2,11 @@
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
 
         <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col">
-            <ng-container *ngIf="col !=='remove'">
+            <ng-container *ngIf="col !== REMOVE">
                 <mat-header-cell *matHeaderCellDef> {{ col | getColTitle: colModels }} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{ element[col] | number: '1.0-0' }} </mat-cell>
             </ng-container>
-            <ng-container *ngIf="col ==='remove'">
+            <ng-container *ngIf="col === REMOVE">
                 <mat-header-cell class="remove-col" *matHeaderCellDef>  </mat-header-cell>
                 <mat-cell class="remove-col" *matCellDef="let element">
                     <mat-icon color="warn" (click)="remove(element)">delete_forever</mat-icon>

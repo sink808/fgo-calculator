@@ -4,6 +4,7 @@ import { ColModel } from './table.const';
 import { AtkColModels } from '../../attack/attack.const';
 import { TakaraguColModels } from '../../takaragu/takaragu.const';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { REMOVE } from '../../main.const';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -24,6 +25,7 @@ export class TableComponent implements OnInit, OnChanges {
   public dataSource = new MatTableDataSource<any>();
   public expandedElement: AtkColModels | TakaraguColModels;
   public expandColumns: string[] = [];
+  public REMOVE: string = REMOVE;
   constructor() {}
 
   public ngOnInit(): void {
