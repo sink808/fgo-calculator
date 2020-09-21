@@ -2,6 +2,10 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { FormFieldItem } from './form-fields.const';
 import { TakaraguModels } from '../../takaragu/takaragu.const';
+import {
+  INPUT,
+  SELECT,
+} from '../../main.const';
 @Component({
   selector: 'app-form-fields',
   templateUrl: './form-fields.component.html',
@@ -12,7 +16,8 @@ export class FormFieldsComponent implements OnChanges {
   @Input() public subFormItems: FormFieldItem[] = [];
   @Output() private calValue: EventEmitter<TakaraguModels> = new EventEmitter<TakaraguModels>();
   public form: FormGroup = this.fb.group({});
-
+  public INPUT: string = INPUT;
+  public SELECT: string = SELECT;
   constructor(private fb: FormBuilder) { }
 
   public ngOnChanges(): void {

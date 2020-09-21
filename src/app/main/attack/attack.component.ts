@@ -12,8 +12,7 @@ import {
   AtkModels,
   AtkColModels,
   mainFormItems,
-  subFormItems,
-  displayedColumns } from './attack.const';
+  subFormItems } from './attack.const';
 import {
   ATK,
   CLASS,
@@ -26,7 +25,8 @@ import {
   FIXED_BUFF,
   MAX_DAMAGE,
   MIN_DAMAGE,
-  AVG_DAMAGE } from '../main.const';
+  AVG_DAMAGE,
+  displayedColModels } from '../main.const';
 @Component({
   selector: 'app-attack',
   templateUrl: './attack.component.html',
@@ -36,23 +36,14 @@ export class AttackComponent {
   public mainFormItems: FormFieldItem[] = mainFormItems;
   public subFormItems: FormFieldItem[] = subFormItems;
   public damageList: AtkColModels[] = []; // all cols value for table
-  public colModels: ColModel[] = this.getColModels(); // table cols title and key
-  public displayedColumns: string[] = displayedColumns; // table main cols key
+  public displayedColModels: ColModel[] = displayedColModels; // table main cols title and key
+  public displayedColumns: string[] = this.displayedColModels.map((model) => model.key); // table main cols key
+  public colModels: ColModel[] =
+    this.mainService.getColModels( [...this.mainFormItems, ...this.subFormItems], this.displayedColModels); // table cols title and key
   constructor(
     private mainService: MainService) {
   }
 
-  private getColModels(): ColModel[] {
-    const model = [];
-    [...this.mainFormItems, ...this.subFormItems]
-      .forEach((item) => model.push({title: item.title, key: item.modelName}));
-    model.push(
-      { title: '最大傷害', key: MAX_DAMAGE },
-      { title: '最小傷害', key: MIN_DAMAGE },
-      { title: '平均傷害', key: AVG_DAMAGE }
-    );
-    return model;
-  }
 
   public calculate(inputModel: AtkModels): void {
     /* 公式 =

@@ -13,6 +13,8 @@ import {
   MIN_DAMAGE,
   AVG_DAMAGE,
   REMOVE,
+  INPUT,
+  SELECT,
   classSelectOptions,
   classInhibitionSelectOptions,
   groupInhibitionSelectOptions,
@@ -81,11 +83,11 @@ export const isCriticalSelectOptions: SelectOption[] = [
 ];
 
 export const mainFormItems: FormFieldItem[] = [
-  {title: 'ATK', type: 'input', modelName: ATK, initialValue: 0},
-  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
-  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 0},
-  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
-  {title: '卡片顏色', type: 'select', modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 0,
+  {title: 'ATK', type: INPUT, modelName: ATK, initialValue: 0},
+  {title: '職階', type: SELECT, modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
+  {title: '職階克制', type: SELECT, modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 0},
+  {title: '陣營克制', type: SELECT, modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
+  {title: '卡片顏色', type: SELECT, modelName: CARD, selectOptions: cardDmgSelectOptions, initialValue: 0,
     autoSetting: {
       linkName: CARD_ORDER,
       value: (val: string) => {
@@ -93,20 +95,19 @@ export const mainFormItems: FormFieldItem[] = [
       }
     }
   },
-  {title: '卡片位置', type: 'select', modelName: CARD_ORDER, selectOptions: cardOrderSelectOptions, initialValue: 0},
-  {title: '首卡顏色', type: 'select', modelName: FIRST_CARD, selectOptions: firstCardSelectOptions, initialValue: 0},
-  {title: 'Buster Chain加成', type: 'select', modelName: BUSTER_CHAIN, selectOptions: busterChainSelectOptions, initialValue: 0}
+  {title: '卡片位置', type: SELECT, modelName: CARD_ORDER, selectOptions: cardOrderSelectOptions, initialValue: 0},
+  {title: '首卡顏色', type: SELECT, modelName: FIRST_CARD, selectOptions: firstCardSelectOptions, initialValue: 0},
+  {title: 'Buster Chain加成', type: SELECT, modelName: BUSTER_CHAIN, selectOptions: busterChainSelectOptions, initialValue: 0}
 ];
 
 export const subFormItems: FormFieldItem[] = [
-  {title: '禮裝ATK', type: 'input', modelName: EQUIPMENT_ATK, initialValue: 0, options: equipmentAtkOptions
+  {title: '禮裝ATK', type: INPUT, modelName: EQUIPMENT_ATK, initialValue: 0, options: equipmentAtkOptions
   },
-  {title: 'ATK Buff(%)', type: 'input', modelName: ATK_BUFF, initialValue: 0, tooltip: '攻擊力Buff — 敵方防禦力Buff — 敵方特防威力Buff'},
-  {title: '色卡 Buff(%)', type: 'input', modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
-  {title: '特攻威力 Buff(%)', type: 'input', modelName: SPECIAL_BUFF, initialValue: 0},
-  {title: '固定傷害 Buff', type: 'input', modelName: FIXED_BUFF, initialValue: 0},
-  {title: '是否爆擊', type: 'select', modelName: IS_CRITICAL, initialValue: 0, selectOptions: isCriticalSelectOptions},
-  {title: '爆擊威力 Buff(%)', type: 'input', modelName: CRITICAL_BUFF, initialValue: 0}
+  {title: 'ATK Buff(%)', type: INPUT, modelName: ATK_BUFF, initialValue: 0, tooltip: '攻擊力Buff — 敵方防禦力Buff — 敵方特防威力Buff'},
+  {title: '色卡 Buff(%)', type: INPUT, modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
+  {title: '特攻威力 Buff(%)', type: INPUT, modelName: SPECIAL_BUFF, initialValue: 0},
+  {title: '固定傷害 Buff', type: INPUT, modelName: FIXED_BUFF, initialValue: 0},
+  {title: '是否爆擊', type: SELECT, modelName: IS_CRITICAL, initialValue: 0, selectOptions: isCriticalSelectOptions},
+  {title: '爆擊威力 Buff(%)', type: INPUT, modelName: CRITICAL_BUFF, initialValue: 0}
 ];
 
-export const displayedColumns: string[] = [MAX_DAMAGE, MIN_DAMAGE, AVG_DAMAGE, REMOVE];

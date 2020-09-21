@@ -1,4 +1,5 @@
 import { SelectOption } from '@component/form-fields/form-fields.const';
+import { ColModel } from '@component/table/table.const';
 
 export const ATK = 'atk';
 export const CLASS = 'class';
@@ -13,6 +14,8 @@ export const MAX_DAMAGE = 'maxDamage';
 export const MIN_DAMAGE = 'minDamage';
 export const AVG_DAMAGE = 'avgDamage';
 export const REMOVE = 'remove';
+export const SELECT = 'select';
+export const INPUT = 'input';
 
 export const classSelectOptions: SelectOption[] = [
   {title: 'Saber', value: 1},
@@ -58,4 +61,11 @@ export const equipmentAtkOptions: SelectOption[] = [
   {title: '1307(lv40 黑杯)', value: 1307},
   {title: '2000(lv100 寶石翁)', value: 2000},
   {title: '2400(lv100 黑杯)', value: 2400}
+];
+
+export const displayedColModels: ColModel[] = [
+  {title: '最大傷害', key: MAX_DAMAGE},
+  {title: '最小傷害', key: MIN_DAMAGE},
+  {title: '平均傷害', key: AVG_DAMAGE},
+  {title: '', key: REMOVE}
 ];

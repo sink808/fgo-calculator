@@ -10,8 +10,7 @@ import {
   TakaraguModels,
   TakaraguColModels,
   mainFormItems,
-  subFormItems,
-  displayedColumns } from './takaragu.const';
+  subFormItems } from './takaragu.const';
 import {
   ATK,
   CLASS,
@@ -24,7 +23,8 @@ import {
   FIXED_BUFF,
   MAX_DAMAGE,
   MIN_DAMAGE,
-  AVG_DAMAGE } from '../main.const';
+  AVG_DAMAGE,
+  displayedColModels } from '../main.const';
 
 @Component({
   selector: 'app-takaragu',
@@ -35,22 +35,12 @@ export class TakaraguComponent {
   public mainFormItems: FormFieldItem[] = mainFormItems;
   public subFormItems: FormFieldItem[] = subFormItems;
   public damageList: TakaraguColModels[] = []; // all cols value for table
-  public colModels: ColModel[] = this.getColModels(); // table cols title and key
-  public displayedColumns: string[] = displayedColumns; // table main cols key
+  public displayedColModels: ColModel[] = displayedColModels; // table main cols title and key
+  public displayedColumns: string[] = this.displayedColModels.map((model) => model.key); // table main cols key
+  public colModels: ColModel[] =
+    this.mainService.getColModels([...this.mainFormItems, ...this.subFormItems], this.displayedColModels); // table cols title and key
   constructor(
     private mainService: MainService) {
-  }
-
-  private getColModels(): ColModel[] {
-    const model = [];
-    [...this.mainFormItems, ...this.subFormItems]
-      .forEach((item) => model.push({title: item.title, key: item.modelName}));
-    model.push(
-      { title: '最大傷害', key: MAX_DAMAGE },
-      { title: '最小傷害', key: MIN_DAMAGE },
-      { title: '平均傷害', key: AVG_DAMAGE }
-    );
-    return model;
   }
 
   public calculate(inputModel: TakaraguModels): void {
@@ -89,7 +79,7 @@ export class TakaraguComponent {
       [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue,
       [AVG_DAMAGE]: normalValue * 1 + fixedValue,
     };
-    const colModel: TakaraguColModels = {...inputModel, ...displayedCol };
+    const colModel: TakaraguColModels = { ...inputModel, ...displayedCol };
     const col: TakaraguColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
 
     this.damageList  = [col, ...this.damageList]; // for @Input change

@@ -13,11 +13,13 @@ import {
   MIN_DAMAGE,
   AVG_DAMAGE,
   REMOVE,
+  INPUT,
+  SELECT,
   classSelectOptions,
   classInhibitionSelectOptions,
   groupInhibitionSelectOptions,
   cardSelectOptions,
-  equipmentAtkOptions
+  equipmentAtkOptions,
 } from '../main.const';
 
 export const NP_CARD = 'npCard';
@@ -92,22 +94,22 @@ const npPowerOptions: SelectOption[] = [
 ];
 
 export const mainFormItems: FormFieldItem[] = [
-  {title: 'ATK', type: 'input', modelName: ATK, initialValue: 0},
-  {title: '職階', type: 'select', modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
-  {title: '職階克制', type: 'select', modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 1},
-  {title: '陣營克制', type: 'select', modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
-  {title: '寶具顏色', type: 'select', modelName: NP_CARD, selectOptions: cardSelectOptions, initialValue: 0},
-  {title: '寶具倍率(%)', type: 'input', modelName: NP_POWER, initialValue: 300, options: npPowerOptions}
+  {title: 'ATK', type: INPUT, modelName: ATK, initialValue: 0},
+  {title: '職階', type: SELECT, modelName: CLASS, selectOptions: classSelectOptions, initialValue: 0},
+  {title: '職階克制', type: SELECT, modelName: CLASS_INHIBITION, selectOptions: classInhibitionSelectOptions, initialValue: 1},
+  {title: '陣營克制', type: SELECT, modelName: GROUP_INHIBITION, selectOptions: groupInhibitionSelectOptions, initialValue: 0},
+  {title: '寶具顏色', type: SELECT, modelName: NP_CARD, selectOptions: cardSelectOptions, initialValue: 0},
+  {title: '寶具倍率(%)', type: INPUT, modelName: NP_POWER, initialValue: 300, options: npPowerOptions}
 ];
 
 export const subFormItems: FormFieldItem[] = [
-  {title: '禮裝ATK', type: 'input', modelName: EQUIPMENT_ATK, initialValue: 0, options: equipmentAtkOptions},
-  {title: 'ATK Buff(%)', type: 'input', modelName: ATK_BUFF, initialValue: 0, tooltip: '攻擊力Buff — 敵方防禦力Buff — 敵方特防威力Buff'},
-  {title: '色卡 Buff(%)', type: 'input', modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
-  {title: '寶具威力 Buff(%)', type: 'input', modelName: NP_BUFF, initialValue: 0},
-  {title: '特攻威力 Buff(%)', type: 'input', modelName: SPECIAL_BUFF, initialValue: 0},
-  {title: '寶具特攻 Buff(%)', type: 'input', modelName: SPECIAL_NP_BUFF, initialValue: 100},
-  {title: '固定傷害 Buff', type: 'input', modelName: FIXED_BUFF, initialValue: 0}
+  {title: '禮裝ATK', type: INPUT, modelName: EQUIPMENT_ATK, initialValue: 0, options: equipmentAtkOptions},
+  {title: 'ATK Buff(%)', type: INPUT, modelName: ATK_BUFF, initialValue: 0, tooltip: '攻擊力Buff — 敵方防禦力Buff — 敵方特防威力Buff'},
+  {title: '色卡 Buff(%)', type: INPUT, modelName: CARD_BUFF, initialValue: 0, tooltip: '色卡Buff — 敵方色卡耐性Buff'},
+  {title: '寶具威力 Buff(%)', type: INPUT, modelName: NP_BUFF, initialValue: 0},
+  {title: '特攻威力 Buff(%)', type: INPUT, modelName: SPECIAL_BUFF, initialValue: 0},
+  {title: '寶具特攻 Buff(%)', type: INPUT, modelName: SPECIAL_NP_BUFF, initialValue: 100},
+  {title: '固定傷害 Buff', type: INPUT, modelName: FIXED_BUFF, initialValue: 0}
 ];
 
-export const displayedColumns: string[] = [MAX_DAMAGE, MIN_DAMAGE, AVG_DAMAGE, REMOVE];
+

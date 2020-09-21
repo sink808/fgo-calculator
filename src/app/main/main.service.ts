@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SelectOption, FormFieldItem } from '@component/form-fields/form-fields.const';
+import { ColModel } from '@component/table/table.const';
+import { SELECT } from './main.const';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,7 @@ export class MainService {
       const ouput: T = {...model};
       keys.forEach((key: string) => {
         const targetModel: FormFieldItem = formItems.find((item) => item.modelName === key);
-        if (targetModel && targetModel.type === 'select') {
+        if (targetModel && targetModel.type === SELECT) {
           ouput[key] = this.getOptionValue(ouput[key], targetModel.selectOptions, optKey);
         }
       });
@@ -34,4 +36,9 @@ export class MainService {
     return this.indexTo(model, formItems)('title');
   }
 
+  public getColModels(formItems: FormFieldItem[], displayedColModels: ColModel[]): ColModel[] {
+    const model = [];
+    formItems.forEach((item) => model.push({title: item.title, key: item.modelName}));
+    return [...model, ...displayedColModels];
+  }
 }

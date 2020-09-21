@@ -27,7 +27,7 @@
         <ng-container *ngFor="let formItem of formItems">
             <mat-form-field appearance="outline">
                 <mat-label>{{ formItem.title }}</mat-label>
-                <input *ngIf="formItem.type === 'input'" matInput type="number" [required]="isInputRequired"
+                <input *ngIf="formItem.type === INPUT" matInput type="number" [required]="isInputRequired"
                     [formControlName]="formItem.modelName" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of formItem.options" [value]="option.value">
@@ -35,7 +35,7 @@
                     </mat-option>
                 </mat-autocomplete>
            
-                <select *ngIf="formItem.type === 'select'" matNativeControl [required]="isInputRequired"
+                <select *ngIf="formItem.type === SELECT" matNativeControl [required]="isInputRequired"
                     [formControlName]="formItem.modelName">
                     <ng-container *ngFor="let selectOption of formItem.selectOptions; let index = index;">
                         <option [value]="index">{{ selectOption.title }}</option>
