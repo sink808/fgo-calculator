@@ -7,8 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* avoid delay */
+    .loading-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+    } 
+  </style>
+
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loading-img">
+      <img src="./assets/loading.gif" alt="">
+    </div>
+  </app-root>
 </body>
 </html>
