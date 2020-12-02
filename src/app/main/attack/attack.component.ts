@@ -44,8 +44,7 @@ export class AttackComponent {
     private mainService: MainService) {
   }
 
-
-  public calculate(inputModel: AtkModels): void {
+  public calculate(inputModel: AtkModels): AtkColModels {
     /* 公式 =
     ATK ×
     攻擊補正 ×
@@ -62,6 +61,7 @@ export class AttackComponent {
     ATK × Buster Chain加成
     */
     const model: AtkModels = this.mainService.indexToValue(inputModel, [...this.mainFormItems, ...this.subFormItems]);
+
     const atk: number = (model[ATK] + model[EQUIPMENT_ATK]);
     const classValue: number = +model[CLASS];
     const classInhibition: number = +model[CLASS_INHIBITION];
@@ -88,6 +88,11 @@ export class AttackComponent {
     };
     const colModel: AtkColModels = {...inputModel, ...displayedCol };
     const col: AtkColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
+    return col;
+  }
+
+  public addResToList(inputModel: AtkModels): void {
+    const col: AtkColModels = this.calculate(inputModel);
     this.damageList = [col, ...this.damageList]; // for @Input change
   }
 }

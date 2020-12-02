@@ -37,14 +37,16 @@ export class TakaraguComponent {
   public damageList: TakaraguColModels[] = []; // all cols value for table
   public displayedColModels: ColModel[] = displayedColModels; // table main cols title and key
   public displayedColumns: string[] = this.displayedColModels.map((model) => model.key); // table main cols key
-  public colModels: ColModel[] =
-    this.mainService.getColModels([...this.mainFormItems, ...this.subFormItems], this.displayedColModels); // table cols title and key
+  public colModels: ColModel[] = this.mainService.getColModels(
+    [...this.mainFormItems, ...this.subFormItems],
+    this.displayedColModels
+  ); // table cols title and key
   constructor(
     private mainService: MainService) {
   }
 
-  public calculate(inputModel: TakaraguModels): void {
-    /* 公式 =
+  public calculate(inputModel: TakaraguModels): TakaraguColModels{
+     /* 公式 =
     ATK ×
     攻擊補正 ×
     [ 寶具倍率 × 卡牌傷害倍率 × ( 1 + 卡牌BUFF ) ] ×
@@ -59,6 +61,7 @@ export class TakaraguComponent {
     */
     // 公式相關
     const model: TakaraguModels = this.mainService.indexToValue(inputModel, [...this.mainFormItems, ...this.subFormItems]);
+
     const atk: number = (model[ATK] + model[EQUIPMENT_ATK]);
     const npCard: number = ((model[NP_POWER] / 100) * +model[NP_CARD] * (1 + model[CARD_BUFF] / 100));
     const classValue: number = +model[CLASS];
@@ -81,9 +84,12 @@ export class TakaraguComponent {
     };
     const colModel: TakaraguColModels = { ...inputModel, ...displayedCol };
     const col: TakaraguColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
+    return col;
+  }
 
-    this.damageList  = [col, ...this.damageList]; // for @Input change
-
+  public addResToList(inputModel: TakaraguModels): void {
+    const col: TakaraguColModels = this.calculate(inputModel);
+    this.damageList = [col, ...this.damageList]; // for @Input change
   }
 
 }
