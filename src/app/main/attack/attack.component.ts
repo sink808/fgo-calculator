@@ -82,9 +82,9 @@ export class AttackComponent {
     const normalValue: number = atk * correction * cardBuff * classValue * classInhibition *
       groupInhibition * atkBuff * specialBuff * critical * exBuff;
     const displayedCol = {
-      [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue + busterChain,
-      [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue + busterChain,
-      [AVG_DAMAGE]: normalValue * 1 + fixedValue + busterChain
+      [MAX_DAMAGE]: Math.floor(normalValue * maxRandomNum + fixedValue + busterChain),
+      [MIN_DAMAGE]: Math.floor(normalValue * minRandomNum + fixedValue + busterChain),
+      [AVG_DAMAGE]: Math.floor(normalValue * 1 + fixedValue + busterChain)
     };
     const colModel: AtkColModels = {...inputModel, ...displayedCol };
     const col: AtkColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);

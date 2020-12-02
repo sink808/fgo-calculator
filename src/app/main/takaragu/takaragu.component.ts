@@ -78,9 +78,9 @@ export class TakaraguComponent {
     groupInhibition * atkBuff * npBuff * specialNpBuff;
     // 轉換為table要顯示的值
     const displayedCol = {
-      [MAX_DAMAGE]: normalValue * maxRandomNum + fixedValue,
-      [MIN_DAMAGE]: normalValue * minRandomNum + fixedValue,
-      [AVG_DAMAGE]: normalValue * 1 + fixedValue,
+      [MAX_DAMAGE]: Math.floor(normalValue * maxRandomNum + fixedValue),
+      [MIN_DAMAGE]: Math.floor(normalValue * minRandomNum + fixedValue),
+      [AVG_DAMAGE]: Math.floor(normalValue * 1 + fixedValue),
     };
     const colModel: TakaraguColModels = { ...inputModel, ...displayedCol };
     const col: TakaraguColModels = this.mainService.indexToTitle(colModel, [...this.mainFormItems, ...this.subFormItems]);
