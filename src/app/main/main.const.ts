@@ -28,8 +28,8 @@ export const classSelectOptions: SelectOption[] = [
   {title: 'Shielder', value: 1},
   {title: 'Ruler', value: 1.1},
   {title: 'Avenger', value: 1.1},
-  {title: 'Foreigner ', value: 1},
-  {title: 'Alterego ', value: 1},
+  {title: 'Foreigner', value: 1},
+  {title: 'Alterego', value: 1},
   {title: 'MoonCancer', value: 1},
   {title: 'Beast', value: 1}
 ];
