@@ -1,6 +1,11 @@
 # FgoCalculator
 
+[Demo](https://fgo-calculator.netlify.app)  
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+
+Using Angular for framework, angular/material for style.
+Fate/Grand Order is a free-to-play Japanese mobile game.
+This project is a calculator for damage caused by the characters in the game.
 
 ## Development server
 
