@@ -51,6 +51,11 @@ export interface AtkColModels extends AtkModels {
   [AVG_DAMAGE]: number;
 }
 
+export interface AtkCalculateCase {
+  input: AtkModels;
+  result: AtkColModels;
+}
+
 export const cardDmgSelectOptions: SelectOption[] = [
   {title: 'Buster(紅)', value: 1.5},
   {title: 'Arts(藍)', value: 1},

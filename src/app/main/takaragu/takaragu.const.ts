@@ -48,6 +48,10 @@ export interface TakaraguColModels extends TakaraguModels {
   [AVG_DAMAGE]: number;
 }
 
+export interface TakaraguCalculateCase {
+  input: TakaraguModels;
+  result: TakaraguColModels;
+}
 const npPowerOptions: SelectOption[] = [
   {title: '300', value: 300},
   {title: '400', value: 400},

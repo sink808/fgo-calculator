@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MainService } from './main.service';
+import { MainService } from '@main/main.service';
 
 describe('MainService', () => {
   let service: MainService;
@@ -13,4 +13,5 @@ describe('MainService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });
